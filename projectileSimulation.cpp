@@ -21,11 +21,15 @@ void fire()
 {
 }
 
-void ready()
+void ready(double initial_vel, double angle)
 {
     x, prevX, prevY = 0;
     y = cannonHeight;
+    velocity = initial_vel;
     B2 = 0.5 * dragC * airDensity * surfaceArea; // update here since airDensity is variable
+
+    aim(angle);
+    fire();
 }
 
 void aim(double angle)
@@ -47,21 +51,15 @@ void trainingData()
             {
                 for (double angle = 0; angle < 20; angle += 0.5)
                 {
-                    ready();
-                    aim(angle);
-                    fire();
+                    ready(initial_velocity, angle);
                 }
                 for (double angle = 20; angle < 70; angle += 0.2)
                 {
-                    ready();
-                    aim(angle);
-                    fire();
+                    ready(initial_velocity, angle);
                 }
                 for (double angle = 70; angle <= 90; angle += 0.5)
                 {
-                    ready();
-                    aim(angle);
-                    fire();
+                    ready(initial_velocity, angle);
                 }
             }
         }
